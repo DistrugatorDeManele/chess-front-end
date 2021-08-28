@@ -1,0 +1,38 @@
+h1,
+p {
+  font-family: Lato;
+}
+#myBoard {
+  position: absolute;
+  top: 8.1%;
+  right: 35%;
+}
+#waiting {
+  position: absolute;
+  top: 7%;
+  right: 5%;
+}
+#waiting2 {
+  position: absolute;
+  top: 7%;
+  right: 19%;
+}
+#history {
+  position: absolute;
+  right: 31%;
+  top: 18%;
+}
+#istoric {
+  position: absolute;
+  right: 27%;
+  top: 13%;
+}
+#right-box {
+  height: 850px;
+  width: 600px;
+  background: rgba(33, 32, 29, 1);
+  color: rgb(143, 170, 169);
+  margin-left: 1270px;
+  margin-top: 50px;
+  border-radius: 10px;
+}

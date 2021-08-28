@@ -1,0 +1,176 @@
+#title {
+  background-color: #26211b;
+  min-height: 3rem;
+  display: flex;
+  line-height: 20;
+  font-size: 150%;
+  font-weight: 300;
+}
+
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  background-color: #312e2b !important;
+}
+h1 {
+  margin-left: 15px;
+}
+#invite {
+  margin-left: 43px;
+  font-size: 200%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: rgb(186, 186, 185);
+}
+#link {
+  font-size: 70%;
+  margin-left: 20px;
+  border: 3px solid transparent;
+  position: absolute;
+  top: 9.6%;
+}
+#main-box {
+  border: 3px solid transparent;
+  margin-top: 100px;
+  margin-left: 600px;
+  margin-right: 600px;
+  height: 500px;
+  width: 700px;
+  background-color: #26211b;
+  opacity: 0.9;
+  border-radius: 30px;
+}
+#multiplayer {
+  margin: 0 auto;
+  display: block;
+  margin-top: 20px;
+  width: 600px;
+  height: 85px;
+  background-color: #b58863;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 300%;
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  line-height: normal;
+  transition: all 0.8s ease 0s;
+}
+#computer {
+  margin: 0 auto;
+  display: block;
+  margin-top: 30px;
+  width: 600px;
+  height: 85px;
+  background-color: rgb(65, 62, 60);
+  border: 1px solid transparent;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 300%;
+  color: rgb(186, 186, 185);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  line-height: normal;
+  transition: all 0.8s ease 0s;
+}
+#computer:hover {
+  background-color: #504f4f;
+}
+#multiplayer:hover {
+  background-color: #bb804f;
+}
+#text2-mp {
+  font-size: 1.35rem;
+  margin-bottom: 5px;
+}
+#text2-pc {
+  font-size: 1.35rem;
+  margin-bottom: 5px;
+}
+#home-link {
+  position: absolute;
+  top: -23%;
+  right: 83%;
+  all: initial;
+  width: 100px;
+  font-size: 1.35rem;
+  text-decoration: none;
+  color: #6cebae;
+  border: 2px solid transparent;
+  padding-top: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+#title-link {
+  text-decoration: none;
+  color: #6cebae;
+  border: 2px solid transparent;
+  padding-right: 20px;
+  padding-top: 5px;
+}
+#home-link:hover,
+#title-link:hover {
+  background-color: #504f4f;
+}
+#home {
+  font-weight: 800;
+  background: url(https://media.freestocktextures.com/cache/5c/b2/5cb2fad072a5e73efa48051829a91f99.jpg)
+    no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  text-align: center;
+}
+#playf {
+  border-radius: 30px;
+  background-color: rgb(65, 62, 60);
+  border: 1px solid transparent;
+  transition: all 0.8s ease 0s;
+  width: 300px;
+  position: absolute;
+  right: 38%;
+  top: 8.2%;
+  color: rgb(186, 186, 185);
+}
+#playr {
+  border-radius: 30px;
+  background-color: rgb(65, 62, 60);
+  margin-left: 10px;
+  border: 1px solid transparent;
+  transition: all 0.8s ease 0s;
+  width: 300px;
+  font-size: 200%;
+  color: rgb(186, 186, 185);
+}
+#playf:hover,
+#playr:hover {
+  background-color: #504f4f;
+}
+#searching {
+  margin-left: 40px;
+  font-size: 200%;
+  border-radius: 30px;
+  border: 7px solid transparent;
+}
+#hp-header {
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 10%);
+}
+#chessworld {
+  font-weight: 800;
+  background: url(https://media.freestocktextures.com/cache/5c/b2/5cb2fad072a5e73efa48051829a91f99.jpg)
+    no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  padding: 0;
+  text-align: center;
+  margin-left: 15px;
+}
