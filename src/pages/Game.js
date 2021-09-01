@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import './style.css';
+import '../CSS/style.css';
 import $ from 'jquery';
 window.$ = require('jquery');
 

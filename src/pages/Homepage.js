@@ -1,12 +1,16 @@
 import React from 'react';
-import './hp.css';
+import '../CSS/hp.css';
+import User from '../User.js';
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AuthenticationButton from './AuthenticationButton';
-export default class App extends React.Component  {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCog } from '@fortawesome/free-solid-svg-icons'
+import 'font-awesome/css/font-awesome.min.css';
+import {Helmet} from "react-helmet";
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +26,7 @@ export default class App extends React.Component  {
   componentDidMount() {
     this.socket.on(
       'gasit',
-      function(cod) {
+      function (cod) {
         this.setState({ link: cod });
         this.setState({ gasit: true });
       }.bind(this)
@@ -46,11 +50,11 @@ export default class App extends React.Component  {
     var nimic = null;
     this.socket.emit('cautare', nimic);
   }
-
   render() {
     return (
       <div>
-        <AuthenticationButton/>
+        <Helmet>
+        </Helmet>
         {this.state.gasit && (
           <Redirect
             to={{
@@ -60,7 +64,6 @@ export default class App extends React.Component  {
             }}
           />
         )}
-        <header id="hp-header">
           <div id="title">
             <a id="title-link" href="https://react-upk3at.stackblitz.io">
               <h1 id="chessworld">ChessWorld</h1>
@@ -69,12 +72,18 @@ export default class App extends React.Component  {
               {' '}
               <h3 id="home">Home</h3>
             </a>
+            {!User.Connected && <a id = "register" href = '/signup'>
+              <h3> Sign Up </h3>
+             </a>}
+            <a id = "settings-icon"  href = "/settings">
+          <FontAwesomeIcon icon={faCog} size = "3x" color = 'white'/>
+          </a>
           </div>
-        </header>
         <div id="invite">
           {' '}
-          Invite your friend with this link !
+          <p id="invite-friend">Invite your friend with this link !</p>
           <input
+            name="link"
             id="link"
             type="text"
             value={this.state.link}
@@ -89,7 +98,7 @@ export default class App extends React.Component  {
               state: { fromDashboard: true }
             }}
           >
-            <button id="playf" className="ms-2" className="mt-2">
+            <button id="playf" >
               {' '}
               <div>Play with friend</div>
             </button>
@@ -116,6 +125,7 @@ export default class App extends React.Component  {
             <div id="text2-pc">Train against AI </div>
           </button>{' '}
         </div>
+        <FontAwesomeIcon icon={["far", "coffee"]} />
       </div>
     );
   }

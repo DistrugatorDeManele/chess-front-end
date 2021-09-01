@@ -1,0 +1,14 @@
+#settings-box {
+  border: 2px solid black;
+  width: 1400px;
+  height: 800px;
+  position: relative;
+  right: -9cm;
+}
+#settings-icon {
+  right: -48.5cm;
+  top: -1.3cm;
+}
+#account-title {
+  margin-top: 10px;
+}

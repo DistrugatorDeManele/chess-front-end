@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Homepage from './Homepage';
-import Game from './Game';
+import Homepage from './pages/Homepage';
+import Game from './pages/Game';
+import Settings from './pages/Settings';
+import Signup from './pages/Signup';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Auth0Provider } from "@auth0/auth0-react";
-
-
+window.Connected = 0;
 const io = require('socket.io-client');
 const socket = io('http://localhost:4000/');
 ReactDOM.render(
@@ -17,8 +18,14 @@ ReactDOM.render(
     <React.StrictMode>
     <Router>
       <Switch>
+        <Route path='/signup'>
+          <Signup socket = {socket}/>
+        </Route>
         <Route path="/game">
           <Game socket={socket} />
+        </Route>
+        <Route path='/settings'>
+          <Settings/>
         </Route>
         <Route path="/">
           <Homepage socket={socket} />
