@@ -2,7 +2,8 @@ import React from 'react';
 import '../CSS/signup.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
-import User from '../User.js'
+import Header from './Header';
+import { Redirect } from 'react-router-dom';
 export default class Settings extends React.Component  {
     constructor(props){
         super(props);
@@ -15,26 +16,19 @@ export default class Settings extends React.Component  {
         email: document.getElementById('input2').value,
         password: document.getElementById('input3').value
         });
-        console.log("am intrat");
-        User.Connected = true;
+        window.connected = true;
+        this.forceUpdate();
     }
     render(){
         return(
             <div>
-                <div id="title">
-                    <a id="title-link" href="/">
-                        <h1 id="chessworld">ChessWorld</h1>
-                    </a>
-                    <a id="home-link" href="/">
-                        <h3 id="home">Home</h3>
-                     </a>
-                    <a id = "register" href = '/signup'>
-                        <h3> Sign Up </h3>
-                    </a>
-                    <a id = "settings-icon"  href = "/settings">
-                        <FontAwesomeIcon icon={faCog} size = "3x" color = 'white'/>
-                    </a>
-                </div>
+                {window.connected && <Redirect
+                    to={{
+                    pathname: '/',
+                    state: { fromDashboard: true }
+                    }}
+                />}
+                <Header></Header>
                 <div id = "signup-box">
                     <div id = "box">
                         <label id = "label"> Username </label>

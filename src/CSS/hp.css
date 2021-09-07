@@ -89,6 +89,7 @@ h1 {
   margin-bottom: 5px;
 }
 #home-link {
+  color: gray;
   all: initial;
   width: 130px;
   font-size: 150%;
@@ -98,34 +99,43 @@ h1 {
   padding-left: 3px;
   font-family: Arial, Helvetica, sans-serif;
 }
+#login-link {
+  color: gray !important;
+  all: initial;
+  width: 100px;
+  font-size: 163%;
+  font-weight: 550;
+  text-decoration: none;
+  border: 2px solid transparent;
+  padding-top: 20px;
+  padding-left: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#logout-link {
+  color: gray !important;
+  all: initial;
+  width: 122px;
+  font-size: 163%;
+  font-weight: 550;
+  text-decoration: none;
+  border: 2px solid transparent;
+  padding-top: 20px;
+  padding-left: 23px;
+  font-family: Arial, Helvetica, sans-serif;
+}
 #title-link {
   text-decoration: none;
   border: 2px solid transparent;
   padding-right: 20px;
   padding-top: 5px;
 }
-#login {
-  position: relative;
-  font-size: 150%;
-  font-weight: 500;
-  width: 100px;
-  height: 74px;
-  border: transparent;
-  background-color: #26211b;
-  color: gray;
-}
 #home-link:hover,
 #title-link:hover,
-#login:hover {
+#login-link:hover,
+#logout-link:hover {
   background-color: #504f4f;
 }
-#register {
-  border: transparent;
-  background-color: #26211b;
-  color: gray;
-  text-decoration: none;
-  width: 150px;
-}
+
 #home {
   color: gray;
   text-align: center;
@@ -160,10 +170,11 @@ h1 {
   background-color: #504f4f;
 }
 #searching {
-  margin-left: 40px;
+  margin-left: 1cm;
   font-size: 200%;
-  border-radius: 30px;
-  border: 7px solid transparent;
+  position: absolute;
+  color: rgb(186, 186, 185);
+  top: 4cm;
 }
 
 #chessworld {
@@ -174,8 +185,9 @@ h1 {
   margin-top: 10px;
 }
 #settings-icon {
-  margin-left: 1312px;
-  margin-top: 13px;
+  position: absolute;
+  right: 0.5cm;
+  top: 0.3cm;
 }
 #register {
   padding-top: 20px;

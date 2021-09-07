@@ -24,6 +24,10 @@ input {
   border: 2px solid gray;
   background-color: gray;
   color: #dbd1c9;
+  padding: 10px;
+}
+::placeholder {
+  color: rgba(255, 255, 255, 0.335);
 }
 input:focus {
   outline: none;

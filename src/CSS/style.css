@@ -36,3 +36,17 @@ p {
   margin-top: 50px;
   border-radius: 10px;
 }
+#timerme,
+#timerop {
+  color: white;
+}
+#timerme {
+  position: absolute;
+  top: 20cm;
+  right: 45cm;
+}
+#timerop {
+  position: absolute;
+  top: 4cm;
+  right: 45cm;
+}

@@ -4,9 +4,10 @@ import Homepage from './pages/Homepage';
 import Game from './pages/Game';
 import Settings from './pages/Settings';
 import Signup from './pages/Signup';
+import Login from './pages/Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Auth0Provider } from "@auth0/auth0-react";
-window.Connected = 0;
+window.connected = false;
 const io = require('socket.io-client');
 const socket = io('http://localhost:4000/');
 ReactDOM.render(
@@ -18,6 +19,9 @@ ReactDOM.render(
     <React.StrictMode>
     <Router>
       <Switch>
+        <Route path='/login'>
+          <Login socket = {socket}/>
+        </Route>
         <Route path='/signup'>
           <Signup socket = {socket}/>
         </Route>

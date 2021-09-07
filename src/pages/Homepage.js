@@ -1,6 +1,5 @@
 import React from 'react';
 import '../CSS/hp.css';
-import User from '../User.js';
 import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
 import { Link } from 'react-router-dom';
@@ -10,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog } from '@fortawesome/free-solid-svg-icons'
 import 'font-awesome/css/font-awesome.min.css';
 import {Helmet} from "react-helmet";
+import Header from './Header.js'
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -64,21 +64,7 @@ export default class App extends React.Component {
             }}
           />
         )}
-          <div id="title">
-            <a id="title-link" href="https://react-upk3at.stackblitz.io">
-              <h1 id="chessworld">ChessWorld</h1>
-            </a>
-            <a id="home-link" href="https://react-upk3at.stackblitz.io/">
-              {' '}
-              <h3 id="home">Home</h3>
-            </a>
-            {!User.Connected && <a id = "register" href = '/signup'>
-              <h3> Sign Up </h3>
-             </a>}
-            <a id = "settings-icon"  href = "/settings">
-          <FontAwesomeIcon icon={faCog} size = "3x" color = 'white'/>
-          </a>
-          </div>
+        <Header></Header>
         <div id="invite">
           {' '}
           <p id="invite-friend">Invite your friend with this link !</p>

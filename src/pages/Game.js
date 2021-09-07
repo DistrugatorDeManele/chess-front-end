@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import '../CSS/style.css';
 import $ from 'jquery';
+import { ThemeConsumer } from 'react-bootstrap/esm/ThemeProvider';
 window.$ = require('jquery');
 
 const Chessboard = require('chessboardjs');
@@ -14,7 +15,9 @@ export default class Game extends React.Component {
     this.state = {
       history: [],
       both: false,
-      da: false
+      da: false,
+      minutes: 0,
+      seconds: 3
     };
 
     this.blackSquareGrey = '#696969';
@@ -22,6 +25,9 @@ export default class Game extends React.Component {
     this.game = new Chess();
     this.board = null;
     this.socket.emit('link', window.location.search.substring(1));
+    this.myInterval = null;
+    this.stop = this.stop.bind(this);
+    this.tick = this.tick.bind(this);
   }
 
   componentDidMount() {
@@ -63,8 +69,31 @@ export default class Game extends React.Component {
         console.log('Am intrat');
       }.bind(this)
     );
+}
+stop() {
+  if(this.myInterval != null)
+  clearInterval(this.myInterval)
+}
+  tick(){
+    this.myInterval = setInterval(() => {
+      const { seconds, minutes } = this.state
+      if (seconds > 0) {
+          this.setState(({ seconds }) => ({
+              seconds: seconds - 1
+          }))
+      }
+      if (seconds === 0) {
+          if (minutes === 0) {
+              clearInterval(this.myInterval)
+          } else {
+              this.setState(({ minutes }) => ({
+                  minutes: minutes - 1,
+                  seconds: 59
+              }))
+          }
+      } 
+      }, 1000)
   }
-
   // only allow pieces to be dragged when the board is oriented
   // in their direction
   onDragStart = (source, piece, position, orientation) => {
@@ -113,6 +142,8 @@ export default class Game extends React.Component {
       if (move === null) return 'snapback';
       var mutari = [source, target];
       // updateStatus()
+      this.tick();
+      this.forceUpdate();
       this.setHistory(this.game.history({ verbose: true }));
       this.socket.emit('mutarecod', window.location.search.substring(1));
       this.socket.emit('mutare', {
@@ -146,8 +177,17 @@ export default class Game extends React.Component {
   };
 
   render() {
+    const { minutes, seconds } = this.state
     return (
       <div>
+        <div id = "timerme">
+          <h1>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1>
+        </div>
+        <button onClick = {this.stop}></button>
+        <button onClick = {this.tick}></button>
+        <div id = "timerop">
+          <h1>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1>
+        </div>
         <div id="myBoard" style={{ width: '800px' }} />
         <div id="right-box">
           {!this.state.both && (
