@@ -1,0 +1,42 @@
+#chooseTime {
+  position: absolute;
+  right: 43cm;
+  top: 3.85cm;
+}
+#timeRange {
+  position: absolute;
+  right: 40.8cm;
+  top: 4.07cm;
+  height: 30px;
+  border-radius: 5px;
+  background-color: gray;
+}
+#chooseColor {
+  position: absolute;
+  right: 47.7cm;
+  top: 6.5cm;
+}
+input {
+  block-size: 25px;
+}
+#random {
+  block-size: 10px;
+}
+.colorButton {
+  border: transparent;
+  border-radius: 5px;
+  font-weight: 500;
+  background-color: gray;
+  color: white;
+  position: absolute;
+  top: 6.75cm;
+}
+#randomColor {
+  right: 45cm;
+}
+#white {
+  right: 43cm;
+}
+#black {
+  right: 41cm;
+}

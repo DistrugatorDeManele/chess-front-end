@@ -96,6 +96,7 @@ h1 {
   text-decoration: none;
   border: 2px solid transparent;
   padding-top: 20px;
+  padding-bottom: 5px;
   padding-left: 3px;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -181,8 +182,9 @@ h1 {
   font-weight: 800;
   color: gray;
   text-align: center;
-  margin-left: 15px;
-  margin-top: 10px;
+  margin-left: 15px !important;
+  margin-top: 10px !important;
+  display: inherit;
 }
 #settings-icon {
   position: absolute;

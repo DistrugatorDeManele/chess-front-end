@@ -100,16 +100,19 @@ export default class App extends React.Component {
           <h2 id="searching"> Searching for player... </h2>
         )}
         <div id="main-box">
+          <Link to = '/online'>
           <button id="multiplayer">
             {' '}
-            <div id="text-mp">Multiplayer </div>
+            <div id="text-mp">Multiplayer</div>
             <div id="text2-mp">Play against a friend or a random opponent </div>
-          </button>{' '}
+          </button>{' '}</Link>
+          <Link to = "/computer">
           <button id="computer">
             {' '}
             <div id="text-pc">Computer </div>
             <div id="text2-pc">Train against AI </div>
           </button>{' '}
+          </Link>
         </div>
         <FontAwesomeIcon icon={["far", "coffee"]} />
       </div>

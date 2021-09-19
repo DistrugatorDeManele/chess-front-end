@@ -1,0 +1,14 @@
+#play {
+  position: absolute;
+  right: 43cm;
+  top: 9cm;
+  border: transparent;
+  border-radius: 10px;
+  width: 100px;
+  height: 40px;
+  background-color: rgb(71, 0, 0);
+  color: white;
+  font-weight: 600;
+  font-size: 150%;
+  padding-bottom: 40px;
+}
