@@ -40,3 +40,26 @@ input {
 #black {
   right: 41cm;
 }
+#chooseDifficulty{
+  position: absolute;
+  top: 9cm;
+  right: 43.3cm;
+}
+#difficultyRange{
+  position: absolute;
+  top: 9.3cm;
+  right: 35cm;
+}
+#playButton{
+  color:gray;
+  font-weight: 600;
+  position: absolute;
+  top: 12cm;
+  right: 43cm;
+  border: transparent;
+  border-radius: 10px;
+  width: 100px;
+  height:50px;
+  font-size: 200%;
+  background-color: rgb(73, 0, 0);
+}

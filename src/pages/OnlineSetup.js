@@ -9,23 +9,65 @@ export default class ComputerSetup extends React.Component {
             id: ['randomColor', 'white', 'black']
         }
         console.log(window.connected);
+        this.socket = this.props.socket;
+        //binding
         this.setColor = this.setColor.bind(this);
         this.defaultOtherTwo = this.defaultOtherTwo.bind(this);
         this.enterQueue = this.enterQueue.bind(this);
-        this.time = 1;
+        this.setTime = this.setTime.bind(this);
+        //the Time and the Color
+        this.time = 10;
+        this.color = 'r';
     }
+    componentDidMount(){
+        this.socket.on('gasit', function(cod){
+            var da;
+        }.bind(this)
+        );
+    }
+    //Send to server to look for potential opponent
     enterQueue(){
+        this.socket.emit('cautare', {color: this.color, time: this.time});
     }
+    //function to set the chosen Time
     setTime(){
         var options = document.getElementById("timeRange");
-        console.log(options.options[options.selectedIndex].value);
+        console.log(options.options[options.selectedIndex].value[0]);
+        var time = options.options[options.selectedIndex].value;
+        //setting the time
+        if(time[0] == '1'){
+            if(time[1] == '0'){
+                this.time = 10;
+            }
+            if(time[1] != '0'){
+                this.time = 1;
+            }
+        }
+        if(time[0] == '3'){
+            this.time = 30;
+        }
+        if(time[0] == '5'){
+            this.time = 5;
+        }
     }
+    //function to set the chosen Color and coloring the clicked button
     setColor(event){
         var id = event.target.id;
         var property = document.getElementById(id);
         property.style.backgroundColor = "#282424";
         this.defaultOtherTwo(id);
+        //setting the color 
+        if(id[0] == 'r'){
+            this.color = 'r';
+        }
+        if(id[0] == 'w'){
+            this.color = 'w';
+        }
+        if(id[0] == 'b'){
+            this.color = 'b';
+        }
     }
+    //css:decoloring the other 2 buttons 
     defaultOtherTwo(id){
         if(id == this.state.id[0]){
             var property = document.getElementById(this.state.id[1]);
@@ -62,7 +104,7 @@ export default class ComputerSetup extends React.Component {
                 <div>
                     <h2 id = "chooseTime">Choose your time</h2>
                     <select id = "timeRange" onChange = {this.setTime}>
-                        <option onClick = {this.setTime}>1m</option>
+                        <option>1m</option>
                         <option>5m</option>
                         <option>10m</option>
                         <option>30m</option>
@@ -75,7 +117,7 @@ export default class ComputerSetup extends React.Component {
                     <button class = "colorButton" id = "black" onClick = {(event) => {this.setColor(event)}}>Black</button>
                 </div>
                 <div>
-                    <button onClick = {this.enterQueue()} id = "play">Play</button>
+                    <button onClick = {this.enterQueue} id = "play">Play</button>
                 </div>
             </div>
         );

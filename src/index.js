@@ -7,6 +7,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import ComputerSetup from './pages/ComputerSetup';
 import OnlineSetup from './pages/OnlineSetup';
+import GameComputer from './pages/GameComputer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Auth0Provider } from "@auth0/auth0-react";
 window.connected = false;
@@ -21,10 +22,13 @@ ReactDOM.render(
     <React.StrictMode>
     <Router>
       <Switch>
+        <Route path = '/computer'>
+          <GameComputer socket = {socket}/>
+        </Route>
         <Route path = '/online'>
           <OnlineSetup socket = {socket}/>
         </Route>
-        <Route path = '/computer'>
+        <Route path = '/AIsetup'>
           <ComputerSetup socket = {socket}/>
         </Route>
         <Route path='/login'>

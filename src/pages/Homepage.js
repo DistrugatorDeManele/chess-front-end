@@ -106,7 +106,7 @@ export default class App extends React.Component {
             <div id="text-mp">Multiplayer</div>
             <div id="text2-mp">Play against a friend or a random opponent </div>
           </button>{' '}</Link>
-          <Link to = "/computer">
+          <Link to = "/AIsetup">
           <button id="computer">
             {' '}
             <div id="text-pc">Computer </div>
