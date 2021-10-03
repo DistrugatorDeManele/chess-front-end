@@ -1,12 +1,14 @@
 import React from 'react';
-import { Socket } from 'socket.io-client';
 import '../CSS/onlinesetup.css';
 import Header from './Header.js'
+import { Redirect } from 'react-router-dom';
 export default class ComputerSetup extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            id: ['randomColor', 'white', 'black']
+            id: ['randomColor', 'white', 'black'],
+            link: '',
+            playerColor: 'da'
         }
         console.log(window.connected);
         this.socket = this.props.socket;
@@ -16,12 +18,15 @@ export default class ComputerSetup extends React.Component {
         this.enterQueue = this.enterQueue.bind(this);
         this.setTime = this.setTime.bind(this);
         //the Time and the Color
-        this.time = 10;
+        this.time = 1;
         this.color = 'r';
     }
     componentDidMount(){
+        var property = document.getElementById("randomColor");
+        property.style.backgroundColor = "#282424";
         this.socket.on('gasit', function(cod){
-            var da;
+            this.setState({gasit: true, link: cod});
+            console.log('am primit');
         }.bind(this)
         );
     }
@@ -97,7 +102,7 @@ export default class ComputerSetup extends React.Component {
                     to={{
                     pathname: '/game',
                     search: this.state.link,
-                    state: { fromDashboard: true }
+                    state: { playerColor: 'da' }
                     }}
                 />
                 )}

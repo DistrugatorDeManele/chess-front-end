@@ -7,7 +7,6 @@ window.$ = require('jquery');
 
 import Chessboard from "chessboardjsx";
 import Chess from "chess.js";
-
 export default class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -16,16 +15,20 @@ export default class Game extends React.Component {
       history: [],
       both: false,
       da: false,
-      minutes1: 10,
-      seconds1: 10,
-      minutes2: 10,
-      seconds2: 10,
+      minutes1: 1,
+      seconds1: 0,
+      minutes2: 1,
+      seconds2: 0,
       moves: [],
       order: [],
       end: false,
       position: "start",
-      orientation: 'white',
-      playerColor: 'w'
+      orientation: '',
+      playerColor: 'w',
+      begginingOfMatchMe: '',
+      begginingOfMatchOp: '',
+      leftOfMatchMe: '',
+      leftOfMatchOp: ''
     };
     this.blackSquareGrey = '#696969';
     this.whiteSquareGrey = '#a9a9a9';
@@ -48,29 +51,33 @@ export default class Game extends React.Component {
     this.specificMove = 0;
     this.nthmove = 0;
     this.incrementOrder = true;
-  }
-
-  componentDidMount() { //IMPORTANT
+    console.log("playerColor",this.props.location.state.playerColor);
     this.socket.on(
       'link',
-      function(nimic) {
-        if (nimic == 'negru') {
-          this.setState({orientation: 'black'})
-          this.setState({playerColor: 'b'})
+      function(game) {
+        if(game.youAre == 'p1'){
+          this.setState({orientation: game.info.player1});
+          this.setState({playerColor: game.info.player1[0]});
         }
-        this.setState({ both: true });
+        if(game.youAre == 'p2'){
+          this.setState({orientation: game.info.player2});
+          this.setState({playerColor: game.info.player2[0]});
+        }
+        this.setState({minutes1: game.info.time, minutes2: game.info.time})
       }.bind(this)
     );
+  }
+  componentDidMount() {
     this.socket.on(
       'mutare',
       function(move) {
-        this.game.load_pgn(move.tabel);
+        this.game.load_pgn(move.tabel);//1
         this.setState({position: this.game.fen()});
-        var mutari = move.mutari;
-        this.boards = move.table;
+        var mutari = move.mutari;//2
+        this.boards = move.table;//3
         this.setState({moves: mutari});
         this.specificMove = move.mutari[mutari.length - 1];
-        if(move.end == true){
+        if(move.end == true){//4
           this.state.end = true;
         }
         if(this.incrementOrder == true){
@@ -85,12 +92,29 @@ export default class Game extends React.Component {
       }.bind(this)
     );
     this.socket.on(
-      'tabla',
-      function(t1) {
-        if (t1 != null) this.game.load(t1.istorie);
-        this.board.position(this.game.fen());
-        if (t1 != null) this.game.load_pgn(t1.tabel);
-        this.setHistory(this.game.history({ verbose: true }));
+      'roomInformation',
+      function(roomInfo) {
+        this.game.load_pgn(roomInfo.info.tabel);
+        this.setState({position: this.game.fen()});
+        var mutari = roomInfo.info.mutari;//2
+        this.boards = roomInfo.info.table;//3
+        this.setState({moves: mutari});
+        this.specificMove = roomInfo.info.mutari[mutari.length - 1];
+        console.log(roomInfo.youAre);
+        this.setState({orientation: roomInfo.youAre});
+        this.setState({playerColor: roomInfo.youAre[0]});
+        if(move.end == true){//4
+          this.state.end = true;
+        }
+        if(this.incrementOrder == true){
+        this.nthmove++;
+        var copy = this.state.order;
+        copy.push(this.nthmove);
+        this.setState({order: copy});
+        this.incrementOrder = false;
+        }else{
+          this.incrementOrder = true;
+        }
       }.bind(this)
     );
     this.socket.on('timer', function(miliseconds){
@@ -107,7 +131,7 @@ export default class Game extends React.Component {
     }.bind(this)
     );
 }
-  stopme() {
+stopme() {
   if(this.myInterval != null)
   clearInterval(this.myInterval)
   }
@@ -139,7 +163,7 @@ export default class Game extends React.Component {
         once = 0;
       this.setState({seconds1: seconds1});
       this.setState({minutes1: minutes1});
-    }, 1000)
+    }, 100)
   }
   tickop(){
     this.startop = new Date().getTime()
@@ -174,39 +198,8 @@ export default class Game extends React.Component {
       //     this.setState({seconds2: 59});
       //   }
       // }
-    }, 1000)
+    }, 100)
   }
-  // only allow pieces to be dragged when the board is oriented
-  // in their direction
-  // onDragStart = (source, piece, position, orientation) => {
-  //   if (
-  //     ((this.board.orientation() == 'black' && this.game.turn() == 'b') ||
-  //     (this.board.orientation() == 'white' && this.game.turn() == 'w')) && 
-  //     this.boards[this.specificMove] == this.game.fen() && this.state.end == false
-  //   ) {
-  //     console.log(this.game.fen());
-  //     console.log(this.boards[this.specificMove]);
-  //     // get list of possible moves for this square
-  //     var moves = this.game.moves({
-  //       square: source,
-  //       verbose: true
-  //     });
-
-  //     // exit if there are no moves available for this square
-  //     if (moves.length === 0) return;
-
-  //     // highlight the square they moused over
-  //     this.greySquare(source);
-  //     // highlight the possible squares for this piece
-  //     for (var i = 0; i < moves.length; i++) {
-  //       this.greySquare(moves[i].to);
-  //     }
-  //   } else {
-  //     console.log(this.game.fen());
-  //     console.log(this.boards[this.specificMove]);
-  //     return false;
-  //   }
-  // };
   tableHistory(event){
     var index = event.target.getAttribute('whichMove');
     var move = this.state.moves[index];
@@ -229,6 +222,13 @@ export default class Game extends React.Component {
       if (move === null){
         return;
       }
+      this.socket.emit('mutarecod', window.location.search.substring(1));
+      if(this.whattosend == true){
+      this.socket.emit('timer', (this.timeop - this.startop) % 1000);console.log((this.timeop - this.startop) );
+      }
+      else{
+      this.socket.emit('timer', (this.timeme - this.startme) % 1000 );console.log((this.timeme - this.startme) )
+      }
       console.log(this.game.turn())
       this.setState({position: this.game.fen()});
       // updateStatus()
@@ -248,11 +248,6 @@ export default class Game extends React.Component {
       }else{
         this.incrementOrder = true;
       }
-      this.socket.emit('mutarecod', window.location.search.substring(1));
-      if(this.whattosend == true)
-      this.socket.emit('timer', (this.timeop - this.startop) % 1000 );
-      else
-      this.socket.emit('timer', (this.timeme - this.startme) % 1000 );
       if(this.game.game_over() == true){
         this.setState({end: true});
       }

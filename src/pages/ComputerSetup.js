@@ -2,12 +2,14 @@ import React from 'react';
 import '../CSS/computersetup.css';
 import Header from './Header.js';
 import { Redirect } from 'react-router-dom';
+import GameComputer from './GameComputer.js';
 export default class ComputerSetup extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             id: ['randomColor', 'white', 'black'],
-            redirect: false
+            redirect: false,
+            elo: 2000
         }
         console.log(window.connected);
         this.setColor = this.setColor.bind(this);
@@ -17,8 +19,13 @@ export default class ComputerSetup extends React.Component {
         this.time = 10;
         this.color = 'r';
     }
+    setElo(event){
+        if(event.target.value == 1){
+        }
+    }
     enterGame(){
         this.setState({redirect: true});
+        return <GameComputer ></GameComputer>
     }
     setColor(event){
         var id = event.target.id;
@@ -100,13 +107,14 @@ export default class ComputerSetup extends React.Component {
                 </div>
                 <div>
                     <h2 id = "chooseColor">Color</h2>
-                    <button class = "colorButton" id = "randomColor" onClick = {(event) => {this.setColor(event)}}>Random</button>
-                    <button class = "colorButton" id = "white" onClick = {(event) => {this.setColor(event)}}>White</button>
-                    <button class = "colorButton" id = "black" onClick = {(event) => {this.setColor(event)}}>Black</button>
+                    <button className = "colorButton" id = "randomColor" onClick = {(event) => {this.setColor(event)}}>Random</button>
+                    <button className = "colorButton" id = "white" onClick = {(event) => {this.setColor(event)}}>White</button>
+                    <button className = "colorButton" id = "black" onClick = {(event) => {this.setColor(event)}}>Black</button>
                 </div>
                 <div>
                     <h2 id = "chooseDifficulty">Choose difficulty</h2>
-                    <input min = "1" max = "20" id = "difficultyRange" type = "range"></input>
+                    <input onChange = {(event) => {this.setElo(event)}} min = "1" max = "8" id = "difficultyRange" type = "range"></input>
+                    <h2 id = "aiPower"> Elo: {this.state.elo}</h2>
                 </div>
                 <div>
                     <button onClick = {this.enterGame} id = "playButton">Play</button>

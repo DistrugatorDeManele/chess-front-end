@@ -40,18 +40,18 @@ input {
 #black {
   right: 41cm;
 }
-#chooseDifficulty{
+#chooseDifficulty {
   position: absolute;
   top: 9cm;
   right: 43.3cm;
 }
-#difficultyRange{
+#difficultyRange {
   position: absolute;
   top: 9.3cm;
   right: 35cm;
 }
-#playButton{
-  color:gray;
+#playButton {
+  color: gray;
   font-weight: 600;
   position: absolute;
   top: 12cm;
@@ -59,7 +59,12 @@ input {
   border: transparent;
   border-radius: 10px;
   width: 100px;
-  height:50px;
+  height: 50px;
   font-size: 200%;
   background-color: rgb(73, 0, 0);
+}
+#aiPower {
+  position: absolute;
+  top: 10.5cm;
+  right: 46.3cm;
 }
