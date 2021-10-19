@@ -25,10 +25,6 @@ export default class Game extends React.Component {
       position: "start",
       orientation: '',
       playerColor: 'w',
-      begginingOfMatchMe: '',
-      begginingOfMatchOp: '',
-      leftOfMatchMe: '',
-      leftOfMatchOp: ''
     };
     this.blackSquareGrey = '#696969';
     this.whiteSquareGrey = '#a9a9a9';
@@ -51,7 +47,6 @@ export default class Game extends React.Component {
     this.specificMove = 0;
     this.nthmove = 0;
     this.incrementOrder = true;
-    console.log("playerColor",this.props.location.state.playerColor);
     this.socket.on(
       'link',
       function(game) {
@@ -131,7 +126,7 @@ export default class Game extends React.Component {
     }.bind(this)
     );
 }
-stopme() {
+  stopme() {
   if(this.myInterval != null)
   clearInterval(this.myInterval)
   }

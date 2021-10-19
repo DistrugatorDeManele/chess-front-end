@@ -38,8 +38,8 @@ ReactDOM.render(
         <Route path='/signup'>
           <Signup socket = {socket}/>
         </Route>
-        <Route path="/game" 
-        render={(props) => <Game {...props} socket = {socket}/>}>
+        <Route path="/game">
+          <Game socket = {socket}/>
         </Route>
         <Route path='/settings'>
           <Settings/>
