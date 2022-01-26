@@ -1,12 +1,10 @@
 import React from 'react';
 import '../CSS/hp.css';
-import { AwesomeButton } from 'react-awesome-button';
 import 'react-awesome-button/dist/styles.css';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCog } from '@fortawesome/free-solid-svg-icons'
 import 'font-awesome/css/font-awesome.min.css';
 import {Helmet} from "react-helmet";
 import Header from './Header.js'
@@ -14,7 +12,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      link: this.genereaza(),
+      link: ' ',
       random: true,
       cautare: false,
       gasit: false
@@ -23,32 +21,41 @@ export default class App extends React.Component {
     this.genereaza = this.genereaza.bind(this);
     this.joaca = this.joaca.bind(this);
   }
-  componentDidMount() {
+  componentDidUpdate() {
+    this._isMounted = true;
+    this.setState({link: this.genereaza()});
     this.socket.on(
       'gasit',
       function (cod) {
-        this.setState({ link: cod });
-        this.setState({ gasit: true });
+        if (this._isMounted) {
+          this.setState({ link: cod });
+          this.setState({ gasit: true });
+        }
       }.bind(this)
     );
   }
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
   genereaza() {
-    var link1 = 'https://react-upk3at.stackblitz.io/game?';
+    var link1 = '';
+    var link2 = 'http://localhost:3000/game?';
     var characters =
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
     for (var i = 1; i <= 10; i++) {
       link1 += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
+    link1 = link2 + link1;
     this.setState({ link: link1 });
     //this.socket.emit('invite', window.location.search.substring(1));
     return link1;
   }
   joaca() {
-    this.setState({ random: false });
-    this.setState({ cautare: true });
-    var nimic = null;
-    this.socket.emit('cautare', nimic);
+    // this.setState({ random: false });
+    // this.setState({ cautare: true });
+    // var nimic = null;
+    // this.socket.emit('cautare', nimic);
   }
   render() {
     return (
@@ -81,7 +88,6 @@ export default class App extends React.Component {
             to={{
               pathname: '/game',
               search: this.state.link.substring(this.state.link.length - 10),
-              state: { fromDashboard: true }
             }}
           >
             <button id="playf" >
@@ -114,7 +120,6 @@ export default class App extends React.Component {
           </button>{' '}
           </Link>
         </div>
-        <FontAwesomeIcon icon={["far", "coffee"]} />
       </div>
     );
   }

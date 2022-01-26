@@ -117,9 +117,9 @@ export default class ComputerSetup extends React.Component {
                 </div>
                 <div>
                     <h2 id = "chooseColor">Color</h2>
-                    <button class = "colorButton" id = "randomColor" onClick = {(event) => {this.setColor(event)}}>Random</button>
-                    <button class = "colorButton" id = "white" onClick = {(event) => {this.setColor(event)}}>White</button>
-                    <button class = "colorButton" id = "black" onClick = {(event) => {this.setColor(event)}}>Black</button>
+                    <button className = "colorButton" id = "randomColor" onClick = {(event) => {this.setColor(event)}}>Random</button>
+                    <button className = "colorButton" id = "white" onClick = {(event) => {this.setColor(event)}}>White</button>
+                    <button className = "colorButton" id = "black" onClick = {(event) => {this.setColor(event)}}>Black</button>
                 </div>
                 <div>
                     <button onClick = {this.enterQueue} id = "play">Play</button>
