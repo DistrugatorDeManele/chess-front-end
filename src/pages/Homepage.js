@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import 'font-awesome/css/font-awesome.min.css';
 import {Helmet} from "react-helmet";
 import Header from './Header.js'
+import King from '../Images/king.jpg'
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -57,6 +58,7 @@ export default class App extends React.Component {
     // var nimic = null;
     // this.socket.emit('cautare', nimic);
   }
+  //<img src = {King} height = {100} width = {100}></img>
   render() {
     return (
       <div>

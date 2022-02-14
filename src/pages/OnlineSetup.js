@@ -10,7 +10,6 @@ export default class ComputerSetup extends React.Component {
             link: '',
             playerColor: 'da'
         }
-        console.log(window.connected);
         this.socket = this.props.socket;
         //binding
         this.setColor = this.setColor.bind(this);
@@ -26,7 +25,6 @@ export default class ComputerSetup extends React.Component {
         property.style.backgroundColor = "#282424";
         this.socket.on('gasit', function(cod){
             this.setState({gasit: true, link: cod});
-            console.log('am primit');
         }.bind(this)
         );
     }
@@ -37,7 +35,6 @@ export default class ComputerSetup extends React.Component {
     //function to set the chosen Time
     setTime(){
         var options = document.getElementById("timeRange");
-        console.log(options.options[options.selectedIndex].value[0]);
         var time = options.options[options.selectedIndex].value;
         //setting the time
         if(time[0] == '1'){

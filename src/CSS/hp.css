@@ -14,6 +14,10 @@ h1 {
     margin-left: 100px !important;
   }
 }
+#king-icon{
+  height: 100px;
+  width: 100px;
+}
 #invite {
   font-size: 200%;
   color: rgb(186, 186, 185);

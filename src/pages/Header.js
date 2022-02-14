@@ -7,7 +7,6 @@ import '../CSS/header.css';
 export default class Header extends React.Component {
     constructor(props){
         super(props);
-        console.log(window.connected);
     }
     render(){
         return(
