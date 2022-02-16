@@ -1,19 +1,23 @@
 #chooseTime {
   position: absolute;
-  right: 43cm;
+  right: 41cm;
   top: 3.85cm;
+  font-size: 40px;
 }
 #timeRange {
   position: absolute;
-  right: 40.8cm;
-  top: 4.07cm;
-  height: 30px;
+  right: 37.8cm;
+  top: 4.15cm;
+  width: 80px;
+  height: 35px;
   border-radius: 5px;
   background-color: gray;
+  
 }
 #chooseColor {
+  font-size: 40px;
   position: absolute;
-  right: 47.7cm;
+  right: 46.85cm;
   top: 6.5cm;
 }
 input {
@@ -29,16 +33,22 @@ input {
   background-color: gray;
   color: white;
   position: absolute;
-  top: 6.75cm;
+  top: 6.85cm;
 }
 #randomColor {
-  right: 45cm;
+  right: 42.5cm;
+  width: 120px;
+  height:30px;
 }
 #white {
-  right: 43cm;
+  right: 38cm;
+  width: 120px;
+  height:30px;
 }
 #black {
-  right: 41cm;
+  right: 33.5cm;
+  width: 120px;
+  height:30px;
 }
 #chooseDifficulty {
   position: absolute;

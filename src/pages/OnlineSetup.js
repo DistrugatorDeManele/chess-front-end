@@ -24,6 +24,7 @@ export default class ComputerSetup extends React.Component {
         var property = document.getElementById("randomColor");
         property.style.backgroundColor = "#282424";
         this.socket.on('gasit', function(cod){
+            console.log("m-a trimis");
             this.setState({gasit: true, link: cod});
         }.bind(this)
         );
@@ -105,7 +106,7 @@ export default class ComputerSetup extends React.Component {
                 )}
                 <div>
                     <h2 id = "chooseTime">Choose your time</h2>
-                    <select id = "timeRange" onChange = {this.setTime}>
+                    <select id = "timeRange"  onChange = {this.setTime}>
                         <option>1m</option>
                         <option>5m</option>
                         <option>10m</option>

@@ -59,11 +59,13 @@ export default class Game extends React.Component {
       'link',
       function(game) {
         if(game.youAre == 'p1'){
+          console.log('sunt p1');
           this.setState({orientation: game.player1});
           this.setState({playerColor: game.player1[0]});
           this.setState({minutes1: game.time});
         }
         if(game.youAre == 'p2'){
+          console.log('sunt p2');
           this.setState({orientation: game.player2});
           this.setState({playerColor: game.player2[0]});
         }
@@ -129,6 +131,8 @@ export default class Game extends React.Component {
     );
 }
   transform_time() {
+    console.log(this.WhiteMiliseconds);
+    console.log(this.BlackMiliseconds);
     if(this.state.playerColor == 'w'){
       this.setState({minutes1: Math.trunc(this.WhiteMiliseconds/60000)});
       this.setState({seconds1: Math.trunc((this.WhiteMiliseconds%60000)/1000)});
@@ -136,21 +140,19 @@ export default class Game extends React.Component {
       this.setState({seconds2: Math.trunc((this.BlackMiliseconds%60000)/1000)});
       var LeftWhite = this.WhiteMiliseconds%1000;
       var LeftBlack = this.BlackMiliseconds%1000;
-      if(this.whoSent == 'w'){
-        console.log(Date.now()-this.delay);
-        this.stopme();
-        this.tickop();
-      }else{
-        if(this.whoSent == 'b'){
-        console.log(Date.now()-this.delay);
-        this.stopop();
-        this.tickme();
-        }
-      }
+      console.log(this.whoSent);
       if(this.game.turn() == this.state.playerColor){
+        this.tickme();
+        this.stopop();
         this.miliseconds = LeftWhite+100;
+        console.log('1');
+        console.log(this.state.playerColor);
       }else{
+        this.tickop();
+        this.stopme();
         this.miliseconds = LeftBlack+100;
+        console.log('2');
+        console.log(this.state.playerColor);
       }
     }else{      
       this.setState({minutes1: Math.trunc(this.BlackMiliseconds/60000)});
@@ -159,21 +161,18 @@ export default class Game extends React.Component {
       this.setState({seconds2: Math.trunc((this.WhiteMiliseconds%60000)/1000)});
       var LeftWhite = this.WhiteMiliseconds%1000;
       var LeftBlack = this.BlackMiliseconds%1000;
-      if(this.whoSent == 'w'){
-        console.log(Date.now()-this.delay);
+      if(this.game.turn() == this.state.playerColor){
         this.stopop();
         this.tickme();
+        this.miliseconds = LeftBlack+100;
+        console.log('3')
+        console.log(this.state.playerColor);
       }else{
-        if(this.whoSent == 'b'){
-        console.log(Date.now()-this.delay);
         this.stopme();
         this.tickop();
-        }
-      }
-      if(this.game.turn() == this.state.playerColor){
-        this.miliseconds = LeftBlack+100;
-      }else{
         this.miliseconds = LeftWhite+100;
+        console.log('4');
+        console.log(this.state.playerColor);
       }
     }
   }
@@ -260,13 +259,8 @@ export default class Game extends React.Component {
       if (move === null){
         return;
       }
+      this.unixtime = Date.now();
       var delay = Date.now();
-      this.socket.emit('mutarecod', window.location.search.substring(1));
-      this.socket.emit('timer', {
-        timp: this.unixtime,
-        color: this.state.playerColor,
-        delay: delay
-      });
       if(this.whattosend == true){
       this.setState({position: this.game.fen()});
       var moves1 = this.state.moves;
@@ -288,13 +282,19 @@ export default class Game extends React.Component {
       if(this.game.game_over() == true){
         this.setState({end: true});
       }
-      this.unixtime = Date.now();
       this.socket.emit('mutare', {
+        link: window.location.search.substring(1),
         tabel: this.game.pgn(),
         mutari: this.state.moves,
         table: this.boards,
         end: this.state.end,
         color: this.state.playerColor
+      });
+      this.socket.emit('timer', {
+        link: window.location.search.substring(1),
+        timp: this.unixtime,
+        color: this.state.playerColor,
+        delay: Date.now() - this.unixtime
       });
     }
     };

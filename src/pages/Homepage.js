@@ -8,7 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import 'font-awesome/css/font-awesome.min.css';
 import {Helmet} from "react-helmet";
 import Header from './Header.js'
-import King from '../Images/king.jpg'
+import King from '../Images/king.png'
+import Queen from '../Images/queen.png';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -58,10 +59,13 @@ export default class App extends React.Component {
     // var nimic = null;
     // this.socket.emit('cautare', nimic);
   }
-  //<img src = {King} height = {100} width = {100}></img>
   render() {
     return (
       <div>
+        <div>
+        <img id = "king-icon" src = {King} height = {700} width = {300}></img>
+        <img id = "queen-icon" src = {Queen} height = {700} width = {300}></img>
+        </div>
         <Helmet>
         </Helmet>
         {this.state.gasit && (
@@ -107,21 +111,19 @@ export default class App extends React.Component {
         {this.state.cautare && (
           <h2 id="searching"> Searching for player... </h2>
         )}
-        <div id="main-box">
-          <Link to = '/online'>
+          <Link id = "online" to = '/online'>
           <button id="multiplayer">
             {' '}
             <div id="text-mp">Multiplayer</div>
             <div id="text2-mp">Play against a friend or a random opponent </div>
           </button>{' '}</Link>
-          <Link to = "/AIsetup">
+          <Link id ="AI-link" to = "/AIsetup">
           <button id="computer">
             {' '}
             <div id="text-pc">Computer </div>
             <div id="text2-pc">Train against AI </div>
           </button>{' '}
           </Link>
-        </div>
       </div>
     );
   }

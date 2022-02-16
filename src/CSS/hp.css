@@ -1,9 +1,9 @@
 #title {
-  background-color: #26211b;
+  background-color: #3f3f3f;
   display: flex;
 }
 body {
-  background-color: white;
+  background-color: rgb(231, 229, 229) !important;
   /* #312e2b !important;*/
 }
 h1 {
@@ -15,8 +15,14 @@ h1 {
   }
 }
 #king-icon{
-  height: 100px;
-  width: 100px;
+  position: absolute;
+  margin-top: 210px;
+  margin-left: 200px;
+}
+#queen-icon{
+  position: absolute;
+  margin-top: 210px;
+  margin-left: 1270px;
 }
 #invite {
   font-size: 200%;
@@ -35,26 +41,16 @@ h1 {
   right: -13cm;
   top: -1.4cm;
 }
-#main-box {
-  border: 3px solid transparent;
-  margin-top: 100px;
-  margin-left: 700px;
-  height: 600px;
-  width: 700px;
-  background-color: #26211b;
-  opacity: 0.9;
-  border-radius: 30px;
-  min-width: 100px;
-}
 #multiplayer {
   margin: 0 auto;
   display: block;
-  margin-top: 20px;
+  margin-top: 200px;
+  margin-left: 550px;
   width: 600px;
   height: 85px;
-  background-color: #b58863;
+  background-color: #3f3f3f;
   border: 1px solid transparent;
-  border-radius: 30px;
+  border-radius: 20px;
   font-weight: 700;
   font-size: 300%;
   color: white;
@@ -65,32 +61,43 @@ h1 {
 #computer {
   margin: 0 auto;
   display: block;
-  margin-top: 30px;
+  margin-top: 13px;
+  margin-left: 620px;
   width: 600px;
   height: 85px;
-  background-color: rgb(65, 62, 60);
-  border: 1px solid transparent;
-  border-radius: 30px;
+  background-color: rgb(170, 162, 93);
+  border: 0px solid rgb(255, 255, 255);
+  border-radius: 20px;
   font-weight: 700;
-  font-size: 300%;
+  font-size: 270%;
   color: rgb(186, 186, 185);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   line-height: normal;
   transition: all 0.8s ease 0s;
 }
 #computer:hover {
-  background-color: #504f4f;
+  background-color: rgb(139, 128, 22);
 }
 #multiplayer:hover {
-  background-color: #bb804f;
+  background-color: #7e7e7e;
+}
+#online{
+  text-decoration:none;
+}
+#AI-link{
+  text-decoration: none;
 }
 #text2-mp {
   font-size: 1.35rem;
   margin-bottom: 5px;
 }
+#text-pc{
+  color: rgb(71, 71, 71);
+}
 #text2-pc {
   font-size: 1.35rem;
   margin-bottom: 5px;
+  color: rgb(71, 71, 71);
 }
 #home-link {
   color: gray;
@@ -115,6 +122,7 @@ h1 {
   padding-top: 20px;
   padding-left: 30px;
   font-family: Arial, Helvetica, sans-serif;
+  margin-top: 1px;
 }
 #logout-link {
   color: gray !important;
